@@ -12,9 +12,8 @@ def classify_accent(audio_path):
 
     out_prob, score, index, text_lab = accent_classifier_model.classify_file(audio_path)
     probs = out_prob.squeeze().tolist()
-
     
-    all_confidences = {index_to_label[i]: probs[i] for i in range(len(probs))}
+    all_confidences = {index_to_label[i]: float(probs[i]) for i in range(len(probs))}
 
     top_label = text_lab[0]
     top_score = score[0]
