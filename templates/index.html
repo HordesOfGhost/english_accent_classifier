@@ -1,46 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Accent Detector</title>
-    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}"> 
+    <meta charset="UTF-8" />
+    <title>🎙️ Accent Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}" />
 </head>
 <body>
     <div class="container">
         <h1>🎙️ Accent Detector</h1>
-        <form method="post" action="/analyze">
-            <input type="url" name="video_url" placeholder="Enter video URL" required>
-            <button type="submit">Analyze</button>
+
+        <form method="post" action="/analyze" class="url-form">
+            <input
+                type="url"
+                name="video_url"
+                placeholder="Enter public video URL (MP4 or Loom)"
+                required
+                class="input-url"
+            />
+            <button type="submit" class="btn-submit">Analyze</button>
         </form>
 
         {% if error %}
-        <div class="error">
-            <p>Error: {{ error }}</p>
+        <div class="error-msg">
+            <strong>Error:</strong> {{ error }}
         </div>
         {% endif %}
 
         {% if result %}
-        <div class="result">
-            <h2>Result</h2>
-            <p><strong>Accent:</strong> {{ result.accent }}</p>
-            <p><strong>Confidence:</strong> {{ result.confidence_score }}%</p>
-            <details>
-                <summary>All Confidences</summary>
+        <section class="results">
+            <h2>Analysis Result</h2>
+
+            <div class="main-accent">
+                <h3>Detected Accent</h3>
+                <p class="accent-label">{{ result.accent }}</p>
+                <p class="accent-confidence">{{ result.confidence_score }}%</p>
+            </div>
+
+            <div class="all-confidences">
+                <h4>Confidence Scores by Accent</h4>
                 <ul>
                     {% for label, score in result.all_confidence.items() %}
-                    <li>{{ label }}: {{ score }}%</li>
+                    <li><strong>{{ label }}</strong> <span>{{ score }}%</span></li>
                     {% endfor %}
                 </ul>
-            </details>
+            </div>
 
             {% if audio_path %}
-            <h3>🔊 Extracted Audio</h3>
-            <audio controls>
-                <source src="{{ audio_path }}" type="audio/wav">
-                Your browser does not support the audio element.
-            </audio>
+            <div class="audio-player-section">
+                <h4>🔊 Extracted Audio</h4>
+                <audio controls preload="metadata" class="audio-player">
+                    <source src="{{ audio_path }}" type="audio/wav" />
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
             {% endif %}
-        </div>
+
+            {% if transcription %}
+            <div class="transcription-section">
+                <h4>📝 Transcription</h4>
+                <p>{{ transcription }}</p>
+            </div>
+            {% endif %}
+
+            {% if summary %}
+            <div class="summary-section">
+                <h4>📄 Summary</h4>
+                <p>{{ summary }}</p>
+            </div>
+            {% endif %}
+        </section>
         {% endif %}
     </div>
 </body>
