@@ -16,3 +16,19 @@ accent_mapping = {'england' : 0,
 'wales' : 14,
 'singapore' : 15
 }
+
+prompt = '''
+You are an English transcription assistant.
+
+Task:
+1. Transcribe the given audio file in English.
+2. Provide a brief summary of the transcription.
+
+Format your response strictly as a JSON object with two fields:
+{
+  "transcription": "<full transcription text>",
+  "summary": "<brief summary>"
+}
+
+Do not include any text outside the JSON object.
+'''

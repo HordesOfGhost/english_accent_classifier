@@ -1,9 +1,12 @@
 from models.gemini import gemini_model
+from .config import prompt
+from .utils import extract_json_content_from_llm_response
 
-def transcribe_audio_with_gemini(audio_path):
+def transcribe_and_summarize(audio_path):
     with open(audio_path, "rb") as audio_file:
         response = gemini_model.generate_content([
-            "You are an English transcription assistant. Transcribe the following audio file in English.",
+            prompt,
             {"mime_type": "audio/wav", "data": audio_file.read()}
-        ])
-    return response.text.strip()
+        ]).text
+    json_response = extract_json_content_from_llm_response(response)
+    return json_response
