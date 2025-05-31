@@ -3,6 +3,9 @@ from .config import prompt
 from .utils import extract_json_content_from_llm_response
 
 def transcribe_and_summarize(audio_path):
+    """
+        Transcribe and summarize audio with GEMINI
+    """
     with open(audio_path, "rb") as audio_file:
         response = gemini_model.generate_content([
             prompt,

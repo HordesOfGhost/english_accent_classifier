@@ -5,6 +5,10 @@ index_to_label = {v: k for k, v in accent_mapping.items()}
 
 
 def classify_accent(audio_path):
+    """
+    Classify the accent of the given audio file.
+
+    """
 
     out_prob, score, index, text_lab = accent_classifier_model.classify_file(audio_path)
     probs = out_prob.squeeze().tolist()
