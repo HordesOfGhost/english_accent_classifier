@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accent Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}"> 
+</head>
+<body>
+    <div class="container">
+        <h1>🎙️ Accent Detector</h1>
+        <form method="post" action="/analyze">
+            <input type="url" name="video_url" placeholder="Enter video URL" required>
+            <button type="submit">Analyze</button>
+        </form>
+
+        {% if error %}
+        <div class="error">
+            <p>Error: {{ error }}</p>
+        </div>
+        {% endif %}
+
+        {% if result %}
+        <div class="result">
+            <h2>Result</h2>
+            <p><strong>Accent:</strong> {{ result.accent }}</p>
+            <p><strong>Confidence:</strong> {{ result.confidence_score }}%</p>
+            <details>
+                <summary>All Confidences</summary>
+                <ul>
+                    {% for label, score in result.all_confidence.items() %}
+                    <li>{{ label }}: {{ score }}%</li>
+                    {% endfor %}
+                </ul>
+            </details>
+
+            {% if audio_path %}
+            <h3>🔊 Extracted Audio</h3>
+            <audio controls>
+                <source src="{{ audio_path }}" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
