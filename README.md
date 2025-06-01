@@ -2,6 +2,13 @@
 
 This app detects the accent from a video URL (YouTube or Loom), extracts the audio, classifies the accent, transcribes the audio to English, and generates a summary of the transcription.
 
+### Demo
+
+<video width="600" controls>
+  <source src="static/demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ## Features
 
 - Accepts a public video URL.
@@ -39,4 +46,5 @@ Open your browser and navigate to `http://localhost:8000`.
 Enter a public video URL and click "Analyze" to get the accent classification, transcription, and summary.
 
 ---
+
 
