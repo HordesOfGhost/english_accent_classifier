@@ -4,7 +4,9 @@ This app detects the accent from a video URL (YouTube or Loom), extracts the aud
 
 ### Demo
 
-https://github.com/user-attachments/assets/7eae574a-e1df-4c1b-b653-3bf90585ee61
+Source URL : https://www.youtube.com/shorts/DNwi_KX5wiI
+
+https://github.com/user-attachments/assets/fccfcef8-c468-41ef-b86f-8b10a0504e20
 
 ## Features
 
