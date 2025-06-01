@@ -4,7 +4,7 @@ This app detects the accent from a video URL (YouTube or Loom), extracts the aud
 
 ### Demo
 
-[Download and watch demo.mp4](static/demo.mp4)
+(https://github.com/HordesOfGhost/english_accent_classifier/blob/main/static/demo.mp4)
 
 ## Features
 
