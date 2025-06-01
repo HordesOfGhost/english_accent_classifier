@@ -4,10 +4,7 @@ This app detects the accent from a video URL (YouTube or Loom), extracts the aud
 
 ### Demo
 
-<video width="600" controls>
-  <source src="static/demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[Download and watch demo.mp4](static/demo.mp4)
 
 ## Features
 
